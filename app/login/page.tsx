@@ -14,12 +14,17 @@ import { useAuth } from "@/hooks/useAuth";
 import { useAppDispatch } from "@/hooks/reduxHook";
 import { useRouter } from "next/navigation";
 
+import loginImage from "../../public/loginImage.png"
+import Loader from "@/components/Loader";
+
 const Login = () => {
   useLocalStorageAuth();
   const { isAuth, loading } = useAuth();
   const [isLogin, setIsLogin] = useState(true);
   const router = useRouter();
   const dispatch = useAppDispatch();
+
+  console.log(loginImage)
 
   useEffect(() => {
     if (!loading && isAuth) {
@@ -45,15 +50,15 @@ const Login = () => {
           uid: userCredential.user.uid,
         })
       );
-      router.push("/"); 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      router.push("/");
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       console.error("Authentication error:", error.message);
     }
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <Loader />;
   }
 
   if (isAuth) {
@@ -61,24 +66,44 @@ const Login = () => {
   }
 
   return (
-    <div>
-      {isLogin ? (
-        <>
-          <AuthForm onSubmit={handleSubmit} buttonLable="Sign in" />
-          <p>
-            Don’t have an account?{" "}
-            <button onClick={() => setIsLogin(false)}>Register</button>
-          </p>
-        </>
-      ) : (
-        <>
-          <AuthForm onSubmit={handleSubmit} buttonLable="Sign up" />
-          <p>
-            Already have an account?{" "}
-            <button onClick={() => setIsLogin(true)}>Log in</button>
-          </p>
-        </>
-      )}
+    <div style={{
+      backgroundImage: `url(${loginImage.src})`,
+      backgroundPosition: "center",
+      backgroundSize: "cover"
+    }}
+      className="h-screen flex items-center justify-center"
+    >
+      <div className="bg-black/60 rounded-[4px] flex flex-col items-center pb-[48px]">
+        {isLogin ? (
+          <>
+            <AuthForm
+              title="Sign in"
+              onSubmit={handleSubmit}
+              buttonLable="Sign in"
+            />
+            <p className="font-medium text-gray-300">
+              Don’t have an account?{" "}
+              <button onClick={() => setIsLogin(false)} className="font-bold" >
+                Register
+              </button>
+            </p>
+          </>
+        ) : (
+          <>
+            <AuthForm
+              title="Sign up"
+              onSubmit={handleSubmit}
+              buttonLable="Sign up"
+            />
+            <p className="font-medium text-gray-300">
+              Already have an account?{" "}
+              <button onClick={() => setIsLogin(true)} className="font-bold" >
+                Log in
+              </button>
+            </p>
+          </>
+        )}
+      </div>
     </div>
   );
 };

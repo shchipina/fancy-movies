@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { ReduxProvider } from "@/components/ReduxProvider";
+import { ClientProvider } from "@/components/ClientProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,6 +18,7 @@ export const metadata: Metadata = {
   description: "Movie time",
 };
 
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,12 +26,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <ReduxProvider>
-          {children}
-        </ReduxProvider>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <ClientProvider>
+            {children}
+        </ClientProvider>
       </body>
     </html>
   );
