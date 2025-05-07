@@ -30,13 +30,18 @@ body {
   height: 8px;
 }
 .custom-scroll::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #818181;
   border-radius: 10px;
 }
 .custom-scroll::-webkit-scrollbar-thumb {
-  background: #9FDC26;
+  background: #e50914;
   border-radius: 10px;
 }
 .custom-scroll::-webkit-scrollbar-thumb:hover {
-  background: #7bbf1e;
+  background: #e50914;
+}
+
+.container {
+  margin-top: 80px;
+  padding: 0 64px;
 }

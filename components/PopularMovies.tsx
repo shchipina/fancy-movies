@@ -12,14 +12,12 @@ const PopularMovies = () => {
   if (isLoading) return console.log("isLoading");
 
   return (
-    <div>
-      <h2>Popular Movies</h2>
-      <div className="overflow-scroll w-full px-12 flex">
-        <div className="">
+    <div className="mt-16">
+      <h2 className="text-[26px] font-medium mb-6">Popular Movies</h2>
+      <div className="custom-scroll  cursor-pointer overflow-auto flex gap-4">
           {popularMovies?.map(movie => (
             <MovieCard key={movie.id} movie={movie} />
           ))}
-        </div>
       </div>
     </div>
   )

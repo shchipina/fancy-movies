@@ -1,3 +1,5 @@
+"use client"
+
 import { useEffect, useState } from "react";
 import { useAppSelector, useAppDispatch } from "./reduxHook";
 import { useLocalStorageAuth } from "./useLocalStorageAuth";

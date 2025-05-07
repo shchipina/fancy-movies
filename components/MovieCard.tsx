@@ -8,7 +8,7 @@ type Props = {
 
 const MovieCard: React.FC<Props> = ({ movie }) => {
   return (
-    <article className="w-[300px]">
+    <article className="min-w-[300px]">
       <Image
         src={process.env.NEXT_PUBLIC_IMAGE_URL + movie.backdrop_path}
         alt={movie.title} 
