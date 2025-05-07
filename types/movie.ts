@@ -6,7 +6,8 @@ export type Movie = {
   vote_average: number,
   title: string,
   release_date: string,
-  overview: string
+  overview: string,
+  backdrop_path: string
 }
 
 export type MovieResponse = {

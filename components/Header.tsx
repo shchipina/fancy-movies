@@ -21,7 +21,7 @@ const Header = () => {
   const userName = user.email?.slice(0, 2).toUpperCase();
 
   return (
-    <header className="flex items-center justify-between py-[22px] px-[58px]">
+    <header className="fixed top-0 left-0 w-full z-50 flex items-center justify-between py-[22px] px-[58px]">
       <div className="flex items-center">
         <Link href="/">
           <Image src={Logo} width={93} height={25} alt='Logo image' />
@@ -47,4 +47,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default Header;

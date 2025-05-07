@@ -8,5 +8,6 @@ namespace NodeJS {
     NEXT_PUBLIC_APP_ID: string;
     NEXT_PUBLIC_BASE_URL: string;
     NEXT_PUBLIC_TMDB_TOKEN: string;
+    NEXT_PUBLIC_IMAGE_URL: string;
   }
 }
