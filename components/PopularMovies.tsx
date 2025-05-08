@@ -1,15 +1,16 @@
+"use client"
 import { getPopularMovies } from '@/lib/api/movie';
 import { useQuery } from '@tanstack/react-query';
 import MovieCard from './MovieCard';
 
 const PopularMovies = () => {
-  const { data: popularMovies, isLoading, isError } = useQuery({
+  const { data: popularMovies } = useQuery({
     queryKey: ["movies"],
     queryFn: getPopularMovies,
   });
 
-  if (isError) return console.log("error");
-  if (isLoading) return console.log("isLoading");
+  // if (isError) return console.log("error");
+  // if (isLoading) return console.log("isLoading");
 
   return (
     <div className="mt-16">

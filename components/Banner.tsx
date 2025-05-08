@@ -2,13 +2,13 @@ import { getRandomMovie } from "@/lib/api/movie";
 import { useQuery } from "@tanstack/react-query";
 
 const Banner = () => {
-  const { data, isLoading, isError } = useQuery({
+  const { data } = useQuery({
     queryKey: ["randomMovie"],
     queryFn: getRandomMovie,
   });
 
-  if (isError) return console.log("error");
-  if (isLoading) return console.log("isLoading");
+  // if (isError) return console.log("error");
+  // if (isLoading) return console.log("isLoading");
 
   return (
     <div className="realtive inset-0 -z-10 h-screen w-full">
