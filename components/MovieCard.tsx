@@ -1,5 +1,6 @@
 import { Movie } from '@/types/movie'
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react'
 
 type Props = {
@@ -16,6 +17,7 @@ const MovieCard: React.FC<Props> = ({ movie }) => {
         height={200}
       />
       {movie.title}
+      <Link href={`/movie/${movie.id}`}>Details</Link>
     </article>
   )
 }

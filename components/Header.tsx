@@ -20,8 +20,6 @@ const Header = () => {
   const user = useAuth();
   const userName = user.email?.slice(0, 2).toUpperCase();
 
-  console.log(user)
-
   return (
     <>
       {user.isAuth && (
