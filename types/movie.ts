@@ -11,7 +11,7 @@ export type Movie = {
 
 export type Details = {
   backdrop_path: string,
-  genres: {id: string, name: string}[],
+  genres: { id: string, name: string }[],
   homepage: string,
   origin_country: string[],
   title: string,
@@ -38,14 +38,14 @@ export type Review = {
 export type Video = {
   name: string;
   published_at: string;
-  type: string;
+  key: string;
 };
 
 export type MovieDetails = {
   credits: {
     cast: CastMember[];
   };
-  details: Details; 
+  details: Details;
   review: {
     results: Review[];
   };

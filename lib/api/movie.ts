@@ -1,8 +1,18 @@
 import { Movie, MovieDetails, MovieResponse } from "@/types/movie";
 import { instance } from "../api"
 
+export const getMoviesList = async (page: number): Promise<MovieResponse> => {
+  const response = await instance.get<MovieResponse>(`/movie/popular?language=en-US&page=${page}`);
+  return response.data;
+}
+
 export const getPopularMovies = async (): Promise<Movie[]> => {
-  const response = await instance.get<MovieResponse>('/movie/popular?language=en-US&page=1');
+  const response = await instance.get<MovieResponse>('/trending/movie/day?language=en-US&page=1');
+  return response.data.results;
+}
+
+export const getUpcomingMovies = async (): Promise<Movie[]> => {
+  const response = await instance.get<MovieResponse>('/movie/upcoming?language=en-US&page=1');
   return response.data.results;
 }
 
@@ -12,7 +22,7 @@ export const getRandomMovie = async (): Promise<Movie> => {
   return response.data.results[randomNumber];
 }
 
-export const getMovieDetails = async (id: string):Promise<MovieDetails> => { 
+export const getMovieDetails = async (id: string): Promise<MovieDetails> => {
   try {
     const [detailsMovie, videoMovie, credirsMovie, reviewMovie] = await Promise.all([
       instance.get(`/movie/${id}?language=en-US`),

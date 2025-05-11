@@ -1,14 +1,19 @@
-export type TVResponse = {
-  page: number;
-  result: TV[];
-  total_page: number;
-  total_result: number;
-}
-
 export type TV = {
   id: number;
-  backdrop_path: string;
   name: string;
+  original_name: string;
+  original_language: string;
+  overview: string;
   poster_path: string;
+  backdrop_path: string;
   vote_average: number;
-}
+  vote_count: number;
+  popularity: number;
+};
+
+export type TVResponse = {
+  page: number;
+  results: TV[];
+  total_pages: number;
+  total_results: number;
+};

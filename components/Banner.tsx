@@ -1,5 +1,6 @@
 import { getRandomMovie } from "@/lib/api/movie";
 import { useQuery } from "@tanstack/react-query";
+import Link from "next/link";
 
 const Banner = () => {
   const { data } = useQuery({
@@ -20,7 +21,7 @@ const Banner = () => {
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
           }}
-          className="h-full w-full"
+          className="size-full"
         />
 
         <div className="absolute inset-0 bg-black/60" />
@@ -32,9 +33,9 @@ const Banner = () => {
             <p>Release: {data?.release_date}</p>
             <p>Rating: {data?.vote_average.toFixed(2)}</p>
           </div>
-          <button className="mt-4 px-6 py-2 bg-red-600 hover:bg-red-700 rounded">
+          <Link href={`/movie/${data?.id}`} className="mt-4 px-6 py-2 bg-red-600 hover:bg-red-700 rounded">
             More Info
-          </button>
+          </Link>
         </div>
       </div>
     </div>

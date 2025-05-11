@@ -1,11 +1,12 @@
-import { Movie } from "@/types/movie";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../index";
-type favoritesState = {
-  favorites: Movie[],
+import { MediaItem } from "@/types/media";
+
+type FavoritesState = {
+  favorites: MediaItem[],
 };
 
-const initialState: favoritesState = {
+const initialState: FavoritesState = {
   favorites: []
 };
 
@@ -13,7 +14,7 @@ export const favoritesSlice = createSlice({
   name: "favorites",
   initialState,
   reducers: {
-    add: (state, action: PayloadAction<Movie>) => {
+    add: (state, action: PayloadAction<MediaItem>) => {
       const index = state.favorites.findIndex(favorite => favorite.id === action.payload.id);
 
       if (index === -1) {
@@ -23,7 +24,6 @@ export const favoritesSlice = createSlice({
     remove: (state, action: PayloadAction<number>) => {
       state.favorites = state.favorites.filter(favorite => favorite.id !== action.payload);
     }
-
   }
 });
 
