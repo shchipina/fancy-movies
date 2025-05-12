@@ -2,7 +2,7 @@ import { MediaItem } from "@/types/media";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../index";
 
-type WatchedState = {
+export type WatchedState = {
   watched: MediaItem[];
 };
 
@@ -25,4 +25,4 @@ export const watchedSlice = createSlice({
 
 export const { addWatched } = watchedSlice.actions;
 export default watchedSlice.reducer;
-export const watched = (state: RootState) => state.watched;
+export const watched = (state: RootState) => state.watched.watched;

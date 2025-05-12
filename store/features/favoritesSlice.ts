@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../index";
 import { MediaItem } from "@/types/media";
 
-type FavoritesState = {
+export type FavoritesState = {
   favorites: MediaItem[],
 };
 
