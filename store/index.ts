@@ -1,35 +1,41 @@
 "use client"
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import userReduser from "./features/userSlice";
 import favoritesReducer from "./features/favoritesSlice";
 import watchedReducer from "./features/watchedSlice";
-import { loadFromLocalStorage } from "@/utils/localStorage";
-import type { FavoritesState } from "./features/favoritesSlice";
-import type { WatchedState } from "./features/watchedSlice";
-import { localStorageMiddleware } from "@/utils/middleware";
+import storage from "redux-persist/lib/storage"
+import { persistReducer } from "redux-persist";
+import persistStore from "redux-persist/es/persistStore";
 
-type RootReduser = {
-  user: ReturnType<typeof userReduser>;
-  favorites: FavoritesState,
-  watched: WatchedState,
+const rootReduser = combineReducers({
+  user: userReduser,
+  favorites: favoritesReducer,
+  watched: watchedReducer,
+})
+
+const persistConfig = {
+  key: "root",
+  storage,
 }
 
-const preloadedState = {
-  favorites: loadFromLocalStorage<FavoritesState>("favorites") ?? { favorites: [] },
-  watched: loadFromLocalStorage<WatchedState>("watched") ?? { watched: [] },
-};
+const persistedReducer = persistReducer(persistConfig, rootReduser)
 
 export const store = configureStore({
-  reducer: {
-    user: userReduser,
-    favorites: favoritesReducer,
-    watched: watchedReducer,
-  },
-  preloadedState,
-  middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware().concat(localStorageMiddleware);
-  },
+  reducer: persistedReducer,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [
+          "persist/PERSIST",
+          "persist/REHYDRATE",
+          "persist/PURGE",
+          "persist/REGISTER",
+        ],
+      },
+    }),
 });
 
-export type RootState = RootReduser;
+export const persistor = persistStore(store);
+
+export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

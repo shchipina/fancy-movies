@@ -15,7 +15,7 @@ const Movies = () => {
     placeholderData: keepPreviousData,
   });
 
-  const totalPages = Math.min(movies?.total_pages || 1, 50);
+  const totalPages = Math.min(movies?.total_pages || 1);
 
   const handlePrev = () => setPage((prev) => Math.max(prev - 1, 1));
   const handleNext = () => setPage((prev) => Math.min(prev + 1, totalPages));

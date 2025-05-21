@@ -14,3 +14,6 @@ export const saveToLocalStorage = (key: string, value: unknown): void => {
    console.log(error);
   }
 };
+
+
+// хук або щось інше

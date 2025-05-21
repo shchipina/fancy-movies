@@ -9,6 +9,9 @@ export type Movie = {
   backdrop_path: string,
 }
 
+//  { id: string, name: string } 
+// винести
+
 export type Details = {
   backdrop_path: string,
   genres: { id: string, name: string }[],

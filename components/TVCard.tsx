@@ -7,7 +7,7 @@ import Link from 'next/link';
 
 const TVCard = ({ tv }: { tv: TV }) => {
   return (
-    <Link href={`/tv/${tv.id}`}>
+    <Link href={`/tv-shows/${tv.id}`}>
       <article className="relative min-w-[300px] group cursor-pointer rounded-[4px] overflow-hidden shadow-lg">
         <div className="relative">
           <Image
